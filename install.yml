@@ -2,15 +2,17 @@
 - name: Install Node.js on Ubuntu
   hosts: web_servers
   become: yes
-
   tasks:
     - name: Update APT package cache
       apt:
         update_cache: yes
-      when: ansible_distribution == 'Ubuntu'
 
     - name: Install Node.js and npm
       apt:
         name: nodejs
         state: present
-      when: ansible_distribution == 'Ubuntu'
+
+    - name: Install npm package manager
+      apt:
+        name: npm
+        state: present
